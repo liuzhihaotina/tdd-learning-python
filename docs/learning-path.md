@@ -18,6 +18,7 @@
 
 ### 练习
 
+- 阅读 `docs/chapter-1-example.md`
 - 阅读 `exercises/01-hello-tdd/README.md`
 - 思考你最近写代码时遇到的一个 bug，判断它能否被测试捕获
 
