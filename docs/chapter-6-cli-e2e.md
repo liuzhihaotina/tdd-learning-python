@@ -20,5 +20,5 @@
 ## 你现在可以先做什么
 
 - 先阅读 `docs/chapter-6-example.md`
-- 先完成 `exercises/06-test-architecture/README.md`
+- 先完成 `tests/test_chapter6.py`
 - 先把测试写得更可维护，再考虑 CLI

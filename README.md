@@ -174,6 +174,7 @@ uv run python -m tdd_learning_python.chapter1_cli
 - [练习 03：密码校验器](exercises/03-password-validator/README.md)
 - [练习 04：银行账户](exercises/04-bank-account/README.md)
 - [练习 05：购物车](exercises/05-shopping-cart/README.md)
+- [练习 06：测试架构](exercises/06-test-architecture/README.md)
 - [第一章实战示例：为什么需要测试](docs/chapter-1-example.md)
 - [第一章 CLI + E2E 示例](docs/chapter-1-cli-e2e.md)
 
