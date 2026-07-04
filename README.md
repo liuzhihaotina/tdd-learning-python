@@ -29,6 +29,12 @@
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
+激活 PATH
+
+```bash
+source $HOME/.local/bin/env
+```
+
 安装完成后，重新打开终端，确认命令可用：
 
 ```bash
