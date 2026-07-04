@@ -87,6 +87,7 @@
 - 阅读 `docs/chapter-4-cli-e2e.md`
 - 阅读 `exercises/04-bank-account/README.md`
 - 从“初始余额”开始，一步一步写测试
+- CLI 示例支持循环交互，可输入 `exit` 或 `quit` 主动退出
 
 ---
 
