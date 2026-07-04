@@ -83,7 +83,10 @@
 
 ### 练习
 
+- 阅读 `docs/chapter-4-example.md`
+- 阅读 `docs/chapter-4-cli-e2e.md`
 - 阅读 `exercises/04-bank-account/README.md`
+- 从“初始余额”开始，一步一步写测试
 
 ---
 

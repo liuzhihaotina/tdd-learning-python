@@ -150,6 +150,9 @@ uv run python -m tdd_learning_python.chapter1_cli
   - [第三章 CLI + E2E 示例](docs/chapter-3-cli-e2e.md)
 
 - [第四章：从类与对象开始写测试](docs/learning-path.md#第四章从类与对象开始写测试)
+  - [第四章实战示例：从类与对象开始写测试](docs/chapter-4-example.md)
+  - [第四章 CLI + E2E 示例](docs/chapter-4-cli-e2e.md)
+
 - [第五章：Mock、边界条件与重构](docs/learning-path.md#第五章mock边界条件与重构)
 
 ## 练习入口
