@@ -4,8 +4,10 @@ from tdd_learning_python.chapter5 import (
     CouponCatalogService,
     CouponRule,
     Item,
+    OrderSummary,
     ShoppingCart,
     build_default_coupon_service,
+    render_order_summary,
 )
 
 
@@ -38,6 +40,18 @@ def test_summary_without_coupon() -> None:
     assert summary.total == 30
     assert summary.coupon_code is None
     assert summary.coupon_description is None
+
+
+def test_render_order_summary_without_coupon() -> None:
+    summary = OrderSummary(subtotal=30, discount=0, total=30)
+
+    assert render_order_summary(summary) == [
+        "订单摘要：",
+        "小计：30",
+        "优惠：0",
+        "优惠码：未使用",
+        "总价：30",
+    ]
 
 
 def test_total_uses_coupon_service_mock() -> None:

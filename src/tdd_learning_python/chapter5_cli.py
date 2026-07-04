@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import sys
 
-from tdd_learning_python.chapter5 import Item, ShoppingCart, build_default_coupon_service
+from tdd_learning_python.chapter5_cart import ShoppingCart
+from tdd_learning_python.chapter5_coupon import Item, build_default_coupon_service
+from tdd_learning_python.chapter5_renderer import render_order_summary
 
 
 def _read_coupon_code(cart: ShoppingCart, coupon_service) -> str | None:
@@ -59,14 +61,8 @@ def main() -> int:
         print(str(exc))
         return 1
 
-    print("订单摘要：")
-    print(f"小计：{summary.subtotal}")
-    print(f"优惠：-{summary.discount}")
-    if summary.coupon_code:
-        print(f"优惠码：{summary.coupon_code}（{summary.coupon_description}）")
-    else:
-        print("优惠码：未使用")
-    print(f"总价：{summary.total}")
+    for line in render_order_summary(summary):
+        print(line)
     return 0
 
 
