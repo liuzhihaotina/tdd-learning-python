@@ -45,6 +45,8 @@
 
 - 实现：`src/tdd_learning_python/chapter6.py`
 - 测试：`tests/test_chapter6.py`
+- CLI：`src/tdd_learning_python/chapter6_cli.py`
+- E2E 测试：`tests/test_chapter6_cli_e2e.py`
 
 ---
 
