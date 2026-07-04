@@ -158,6 +158,9 @@ uv run python -m tdd_learning_python.chapter1_cli
 - [第五章：Mock、边界条件与重构](docs/learning-path.md#第五章mock边界条件与重构)
   - [第五章实战示例：Mock、边界条件与重构](docs/chapter-5-example.md)
   - [第五章 CLI + E2E 示例](docs/chapter-5-cli-e2e.md)
+    - 重点：优惠服务接口、购物车、订单摘要渲染器、CLI 读取层职责分离
+    - `chapter5.py` 仅作为兼容导出层保留
+
 
 
 ## 练习入口
