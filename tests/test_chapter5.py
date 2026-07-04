@@ -1,6 +1,12 @@
 import pytest
 
-from tdd_learning_python.chapter5 import CouponService, Item, ShoppingCart
+from tdd_learning_python.chapter5 import (
+    CouponCatalogService,
+    CouponRule,
+    Item,
+    ShoppingCart,
+    build_default_coupon_service,
+)
 
 
 def test_item_rejects_negative_price() -> None:
@@ -22,8 +28,27 @@ def test_total_without_coupon_equals_subtotal() -> None:
     assert cart.total() == 30
 
 
+def test_summary_without_coupon() -> None:
+    cart = ShoppingCart([Item(name="Apple", price=10), Item(name="Banana", price=20)])
+
+    summary = cart.summary()
+
+    assert summary.subtotal == 30
+    assert summary.discount == 0
+    assert summary.total == 30
+    assert summary.coupon_code is None
+    assert summary.coupon_description is None
+
+
 def test_total_uses_coupon_service_mock() -> None:
-    class FakeCouponService(CouponService):
+    class FakeCouponService:
+        def available_codes(self) -> list[str]:
+            return ["SAVE10"]
+
+        def describe(self, code: str) -> str:
+            assert code == "SAVE10"
+            return "立减 10 元"
+
         def get_discount(self, code: str, subtotal: int) -> int:
             assert code == "SAVE10"
             assert subtotal == 100
@@ -31,22 +56,54 @@ def test_total_uses_coupon_service_mock() -> None:
 
     cart = ShoppingCart([Item(name="Apple", price=40), Item(name="Banana", price=60)])
 
-    assert cart.total(coupon_code="SAVE10", coupon_service=FakeCouponService()) == 90
+    summary = cart.summary(coupon_code="SAVE10", coupon_service=FakeCouponService())
+
+    assert summary.total == 90
+    assert summary.discount == 10
+    assert summary.coupon_description == "立减 10 元"
 
 
 def test_total_requires_coupon_service_when_coupon_code_is_used() -> None:
     cart = ShoppingCart([Item(name="Apple", price=40)])
 
     with pytest.raises(ValueError, match="必须提供 coupon_service"):
-        cart.total(coupon_code="SAVE10")
+        cart.summary(coupon_code="SAVE10")
 
 
 def test_total_rejects_too_large_discount() -> None:
-    class FakeCouponService(CouponService):
+    class FakeCouponService:
+        def available_codes(self) -> list[str]:
+            return ["SAVE10"]
+
+        def describe(self, code: str) -> str:
+            return "立减 10 元"
+
         def get_discount(self, code: str, subtotal: int) -> int:
             return subtotal + 1
 
     cart = ShoppingCart([Item(name="Apple", price=10)])
 
     with pytest.raises(ValueError, match="折扣不能超过小计"):
-        cart.total(coupon_code="SAVE10", coupon_service=FakeCouponService())
+        cart.summary(coupon_code="SAVE10", coupon_service=FakeCouponService())
+
+
+def test_configured_coupon_service_supports_multiple_codes() -> None:
+    service = build_default_coupon_service()
+
+    assert service.available_codes() == ["HALF", "MINUS5", "SAVE10"]
+    assert service.get_discount("SAVE10", 100) == 10
+    assert service.get_discount("HALF", 100) == 50
+    assert service.get_discount("MINUS5", 100) == 5
+
+
+def test_configured_coupon_service_rejects_unknown_code() -> None:
+    service = build_default_coupon_service()
+
+    with pytest.raises(ValueError, match="不支持的优惠码：NOPE。可用优惠码：HALF、MINUS5、SAVE10"):
+        service.get_discount("NOPE", 100)
+
+
+def test_coupon_rule_percent() -> None:
+    rule = CouponRule(description="五折优惠", kind="percent", value=50)
+
+    assert rule.discount(100) == 50

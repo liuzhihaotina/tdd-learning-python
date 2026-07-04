@@ -59,6 +59,8 @@ assert cart.total(coupon_code="SAVE10", coupon_service=fake_service) == 90
 
 - 实现：`src/tdd_learning_python/chapter5.py`
 - 测试：`tests/test_chapter5.py`
+- CLI：`src/tdd_learning_python/chapter5_cli.py`
+- E2E 测试：`tests/test_chapter5_cli_e2e.py`
 
 ---
 
@@ -71,3 +73,5 @@ assert cart.total(coupon_code="SAVE10", coupon_service=fake_service) == 90
 这个例子重点是让你体会：
 
 > **先把业务核心做成可测试的小单元，再用 Mock 处理外部依赖。**
+
+如果你想看更接近真实使用场景的版本，可以继续阅读 `docs/chapter-5-cli-e2e.md`，那里会展示如何把购物车包装成一个最小命令行程序，并用 E2E 测试模拟用户输入与优惠码选择。

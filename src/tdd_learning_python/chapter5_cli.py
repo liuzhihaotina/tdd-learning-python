@@ -8,13 +8,32 @@ from __future__ import annotations
 
 import sys
 
-from tdd_learning_python.chapter5 import Item, ShoppingCart
+from tdd_learning_python.chapter5 import Item, ShoppingCart, build_default_coupon_service
+
+
+def _read_coupon_code(cart: ShoppingCart, coupon_service) -> str | None:
+    while True:
+        print("可用优惠码：")
+        for code in coupon_service.available_codes():
+            print(f"- {code}: {coupon_service.describe(code)}")
+        code = input("请输入优惠码（回车跳过，输入 list 重新查看）：").strip()
+        if not code:
+            return None
+        if code.lower() == "list":
+            continue
+        try:
+            coupon_service.get_discount(code, cart.subtotal())
+        except ValueError as exc:
+            print(str(exc))
+            continue
+        return code
 
 
 def main() -> int:
-    """读取用户输入的商品和优惠信息，并计算购物车总价。"""
+    """读取用户输入的商品和优惠信息，并输出订单摘要。"""
 
     cart = ShoppingCart()
+    coupon_service = build_default_coupon_service()
     print("请输入商品；输入空行结束商品录入")
 
     while True:
@@ -33,19 +52,21 @@ def main() -> int:
             print(str(exc))
             return 1
 
-    coupon_code = input("优惠码（可直接回车跳过）：").strip() or None
-    subtotal = cart.subtotal()
-    total = subtotal
+    coupon_code = _read_coupon_code(cart, coupon_service)
+    try:
+        summary = cart.summary(coupon_code=coupon_code, coupon_service=coupon_service)
+    except ValueError as exc:
+        print(str(exc))
+        return 1
 
-    if coupon_code:
-        if coupon_code == "SAVE10":
-            total = max(0, subtotal - 10)
-        else:
-            print("不支持的优惠码")
-            return 1
-
-    print(f"小计：{subtotal}")
-    print(f"总价：{total}")
+    print("订单摘要：")
+    print(f"小计：{summary.subtotal}")
+    print(f"优惠：-{summary.discount}")
+    if summary.coupon_code:
+        print(f"优惠码：{summary.coupon_code}（{summary.coupon_description}）")
+    else:
+        print("优惠码：未使用")
+    print(f"总价：{summary.total}")
     return 0
 
 
