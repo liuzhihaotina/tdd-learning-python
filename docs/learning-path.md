@@ -63,6 +63,7 @@
 ### 练习
 
 - 阅读 `docs/chapter-3-example.md`
+- 阅读 `docs/chapter-3-cli-e2e.md`
 - 阅读 `exercises/03-password-validator/README.md`
 - 先实现最容易通过的密码规则，再逐步补全
 

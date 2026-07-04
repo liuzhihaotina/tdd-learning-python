@@ -50,6 +50,8 @@ assert validate_password("12345678") == (False, ["密码必须包含字母"])
 
 - 实现：`src/tdd_learning_python/chapter3.py`
 - 测试：`tests/test_chapter3.py`
+- CLI：`src/tdd_learning_python/chapter3_cli.py`
+- E2E 测试：`tests/test_chapter3_cli_e2e.py`
 
 ---
 
@@ -62,3 +64,5 @@ assert validate_password("12345678") == (False, ["密码必须包含字母"])
 这个例子重点不是写出“最复杂”的校验器，而是学会：
 
 > **先从最容易验证的纯函数开始，再把规则拆细，最后用测试驱动实现。**
+
+如果你想看更接近真实使用场景的版本，可以继续阅读 `docs/chapter-3-cli-e2e.md`，那里会展示如何把密码校验器包装成一个最小命令行程序，并用 E2E 测试模拟用户输入。
