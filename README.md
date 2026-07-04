@@ -156,6 +156,9 @@ uv run python -m tdd_learning_python.chapter1_cli
 
 
 - [第五章：Mock、边界条件与重构](docs/learning-path.md#第五章mock边界条件与重构)
+  - [第五章实战示例：Mock、边界条件与重构](docs/chapter-5-example.md)
+  - [第五章 CLI + E2E 示例](docs/chapter-5-cli-e2e.md)
+
 
 ## 练习入口
 

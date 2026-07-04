@@ -105,7 +105,11 @@
 
 ### 练习
 
+- 阅读 `docs/chapter-5-example.md`
+- 阅读 `docs/chapter-5-cli-e2e.md`
 - 阅读 `exercises/05-shopping-cart/README.md`
+- 先把购物车核心逻辑做成纯函数/纯对象，再引入外部依赖
+- 用 Fake / Stub / Mock 分离外部服务
 
 ---
 

@@ -17,6 +17,11 @@
 - 再逐步加入优惠与外部依赖
 - 优先测试行为，而不是内部调用次数
 
+## 实战示例
+
+- 阅读 `docs/chapter-5-example.md`
+- 阅读 `docs/chapter-5-cli-e2e.md`
+
 ## 讨论点
 
 - 什么时候需要 Mock？
