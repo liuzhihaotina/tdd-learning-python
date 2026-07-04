@@ -42,8 +42,9 @@
 
 ### 练习
 
+- 阅读 `docs/chapter-2-example.md`
 - 阅读 `exercises/02-fizzbuzz/README.md`
-- 先只实现最简单的一条规则，再逐步扩展
+- 先只实现 `1 -> 1`，再逐步加规则
 
 ---
 
