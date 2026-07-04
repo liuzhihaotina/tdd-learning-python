@@ -70,6 +70,7 @@ abc
 
 - CLI 入口：`src/tdd_learning_python/chapter5_cli.py`
 - E2E 测试：`tests/test_chapter5_cli_e2e.py`
+- 兼容导出层：`src/tdd_learning_python/chapter5.py`
 
 ---
 

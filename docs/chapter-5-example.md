@@ -57,7 +57,10 @@ assert cart.total(coupon_code="SAVE10", coupon_service=fake_service) == 90
 
 ## 代码位置
 
-- 实现：`src/tdd_learning_python/chapter5.py`
+- 兼容导出层：`src/tdd_learning_python/chapter5.py`
+- 优惠服务：`src/tdd_learning_python/chapter5_coupon.py`
+- 购物车：`src/tdd_learning_python/chapter5_cart.py`
+- 摘要渲染器：`src/tdd_learning_python/chapter5_renderer.py`
 - 测试：`tests/test_chapter5.py`
 - CLI：`src/tdd_learning_python/chapter5_cli.py`
 - E2E 测试：`tests/test_chapter5_cli_e2e.py`
