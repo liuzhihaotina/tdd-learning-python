@@ -2,10 +2,10 @@ import subprocess
 import sys
 
 
-def test_chapter4_cli_e2e_deposit() -> None:
+def test_chapter4_cli_e2e_deposit_then_balance_then_exit() -> None:
     result = subprocess.run(
         [sys.executable, "-m", "tdd_learning_python.chapter4_cli"],
-        input="deposit\n50\n",
+        input="deposit\n50\nbalance\nexit\n",
         capture_output=True,
         text=True,
         check=False,
@@ -14,6 +14,7 @@ def test_chapter4_cli_e2e_deposit() -> None:
     assert result.returncode == 0
     assert "当前余额：0" in result.stdout
     assert "当前余额：50" in result.stdout
+    assert result.stdout.rstrip().endswith("已退出")
     assert result.stderr == ""
 
 
