@@ -62,8 +62,9 @@
 
 ### 练习
 
+- 阅读 `docs/chapter-3-example.md`
 - 阅读 `exercises/03-password-validator/README.md`
-- 把规则拆成一条条小测试
+- 先实现最容易通过的密码规则，再逐步补全
 
 ---
 
