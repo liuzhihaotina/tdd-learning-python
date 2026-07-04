@@ -17,6 +17,48 @@ def order_factory():
     return make_order
 
 
+@pytest.fixture
+def pricing_scenarios(order_factory):
+    return [
+        {
+            "name": "basic_small_order",
+            "order": order_factory([10], tier="basic"),
+            "expected": Receipt(
+                subtotal=10,
+                membership_discount=0,
+                shipping_fee=12,
+                tax=1,
+                total=23,
+                customer_tier="basic",
+            ),
+        },
+        {
+            "name": "silver_free_shipping",
+            "order": order_factory([40, 60], tier="silver"),
+            "expected": Receipt(
+                subtotal=100,
+                membership_discount=5,
+                shipping_fee=0,
+                tax=7,
+                total=102,
+                customer_tier="silver",
+            ),
+        },
+        {
+            "name": "gold_large_order",
+            "order": order_factory([50, 60], tier="gold"),
+            "expected": Receipt(
+                subtotal=110,
+                membership_discount=11,
+                shipping_fee=0,
+                tax=7,
+                total=106,
+                customer_tier="gold",
+            ),
+        },
+    ]
+
+
 def test_item_rejects_negative_price() -> None:
     with pytest.raises(ValueError, match="商品价格不能为负数"):
         Item(name="Apple", price=-1)
@@ -41,6 +83,7 @@ def test_membership_discount_rates(engine: PricingEngine, order_factory, tier: s
     [
         ([40, 50], 12),
         ([60, 50], 0),
+        ([100], 0),
     ],
 )
 def test_shipping_fee_threshold(engine: PricingEngine, order_factory, prices: list[int], expected_shipping_fee: int) -> None:
@@ -49,19 +92,13 @@ def test_shipping_fee_threshold(engine: PricingEngine, order_factory, prices: li
     assert receipt.shipping_fee == expected_shipping_fee
 
 
-def test_calculate_receipt_with_fixtures(engine: PricingEngine, order_factory) -> None:
-    order = order_factory([40, 60], tier="silver")
+@pytest.mark.parametrize("scenario", ["basic_small_order", "silver_free_shipping", "gold_large_order"])
+def test_calculate_receipt_with_named_scenarios(engine: PricingEngine, pricing_scenarios, scenario: str) -> None:
+    case = next(item for item in pricing_scenarios if item["name"] == scenario)
 
-    receipt = engine.calculate(order)
+    receipt = engine.calculate(case["order"])
 
-    assert receipt == Receipt(
-        subtotal=100,
-        membership_discount=5,
-        shipping_fee=0,
-        tax=7,
-        total=102,
-        customer_tier="silver",
-    )
+    assert receipt == case["expected"]
 
 
 def test_calculate_rejects_unknown_tier(engine: PricingEngine, order_factory) -> None:
@@ -74,6 +111,7 @@ def test_calculate_rejects_unknown_tier(engine: PricingEngine, order_factory) ->
     [
         ([10], 23),
         ([50, 60], 118),
+        ([100], 108),
     ],
 )
 def test_total_changes_with_item_factory(engine: PricingEngine, order_factory, prices: list[int], expected_total: int) -> None:
