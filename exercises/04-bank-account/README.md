@@ -21,7 +21,7 @@
 
 - 阅读 `docs/chapter-4-example.md`
 - 阅读 `docs/chapter-4-cli-e2e.md`
-- CLI 为循环交互模式，可输入 `exit` / `quit` 主动退出
+- CLI 采用编号菜单，可输入 `4` 主动退出
 
 ## 讨论点
 

@@ -5,7 +5,7 @@ import sys
 def test_chapter4_cli_e2e_deposit_then_balance_then_exit() -> None:
     result = subprocess.run(
         [sys.executable, "-m", "tdd_learning_python.chapter4_cli"],
-        input="deposit\n50\nbalance\nexit\n",
+        input="1\n50\n3\n4\n",
         capture_output=True,
         text=True,
         check=False,
@@ -21,7 +21,7 @@ def test_chapter4_cli_e2e_deposit_then_balance_then_exit() -> None:
 def test_chapter4_cli_e2e_withdraw_too_much() -> None:
     result = subprocess.run(
         [sys.executable, "-m", "tdd_learning_python.chapter4_cli"],
-        input="withdraw\n50\n",
+        input="2\n50\n",
         capture_output=True,
         text=True,
         check=False,
