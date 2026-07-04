@@ -4,7 +4,7 @@ import sys
 
 def test_cli_e2e_free_shipping() -> None:
     result = subprocess.run(
-        [sys.executable, "-m", "tdd_learning_python"],
+        [sys.executable, "-m", "tdd_learning_python.chapter1_cli"],
         input="100\n",
         capture_output=True,
         text=True,
@@ -19,7 +19,7 @@ def test_cli_e2e_free_shipping() -> None:
 
 def test_cli_e2e_rejects_negative_amount() -> None:
     result = subprocess.run(
-        [sys.executable, "-m", "tdd_learning_python"],
+        [sys.executable, "-m", "tdd_learning_python.chapter1_cli"],
         input="-1\n",
         capture_output=True,
         text=True,

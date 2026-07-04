@@ -47,7 +47,7 @@ CLI 是最简单的用户入口，因此很适合拿来演示 E2E。
 
 ## 代码位置
 
-- CLI 入口：`src/tdd_learning_python/cli.py`
+- CLI 入口：`src/tdd_learning_python/chapter1_cli.py`
 - 模块入口：`src/tdd_learning_python/__main__.py`
 - E2E 测试：`tests/test_cli_e2e.py`
 
@@ -66,14 +66,16 @@ uv sync --extra dev
 ### 方式 1：推荐，使用 uv
 
 ```bash
-uv run python -m tdd_learning_python
+uv run python -m tdd_learning_python.chapter1_cli
 ```
+
 
 ### 方式 2：直接使用虚拟环境里的 Python
 
 ```bash
-./.venv/bin/python -m tdd_learning_python
+./.venv/bin/python -m tdd_learning_python.chapter1_cli
 ```
+
 
 然后输入一个金额，例如：
 

@@ -106,13 +106,13 @@ uv sync --extra dev
 ### 方式 1：推荐，使用 uv 运行项目内的 Python
 
 ```bash
-uv run python -m tdd_learning_python
+uv run python -m tdd_learning_python.chapter1_cli
 ```
 
 ### 方式 2：直接使用虚拟环境里的 Python
 
 ```bash
-./.venv/bin/python -m tdd_learning_python
+./.venv/bin/python -m tdd_learning_python.chapter1_cli
 ```
 
 > 注意：不要直接执行系统里的 `python` 或 `python3`，它们可能不会加载本项目的虚拟环境，因此会找不到 `tdd_learning_python`。
