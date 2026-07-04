@@ -21,6 +21,7 @@
 
 - 阅读 `docs/chapter-5-example.md`
 - 阅读 `docs/chapter-5-cli-e2e.md`
+- 阅读 `docs/chapter-6-example.md`，了解后续如何组织测试结构
 
 ## 讨论点
 

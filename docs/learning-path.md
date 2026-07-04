@@ -91,27 +91,28 @@
 
 ---
 
-## 第五章：Mock、边界条件与重构
+## 第六章：测试架构、fixture 与测试数据工厂
 
 ### 目标
 
-让你具备更接近工程实践的测试能力。
+让你学会把“会写测试”升级成“会设计测试结构”。
 
 ### 你会学到
 
-- 什么时候该用 Mock，什么时候不该用
-- 如何测试外部依赖
-- 如何在重构时保持测试稳定
+- `fixture` 的作用与边界
+- `pytest.mark.parametrize` 的进阶用法
+- 测试数据工厂（test data factory）的基本思路
+- 如何维护回归测试集
 
 ### 练习
 
-- 阅读 `docs/chapter-5-example.md`
-- 阅读 `docs/chapter-5-cli-e2e.md`
-- 阅读 `exercises/05-shopping-cart/README.md`
-- 先把购物车核心逻辑做成纯函数/纯对象，再引入外部依赖
-- 用 Fake / Stub / Mock 分离外部服务
+- 阅读 `docs/chapter-6-example.md`
+- 阅读 `docs/chapter-6-cli-e2e.md`
+- 阅读 `exercises/06-test-architecture/README.md`
+- 把重复测试数据抽成 fixture 或工厂
+- 把一组相关回归用例整理成参数化测试
+- 学会让测试可读、可维护、可扩展
 
----
 
 ## 建议学习节奏
 
