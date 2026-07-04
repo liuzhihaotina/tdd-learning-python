@@ -143,6 +143,7 @@ uv run python -m tdd_learning_python
   - [第一章实战示例：为什么需要测试](docs/chapter-1-example.md)
 - [第二章：TDD 基本流程](docs/learning-path.md#第二章tdd-基本流程)
   - [第二章实战示例：TDD 基本流程](docs/chapter-2-example.md)
+  - [第二章 CLI + E2E 示例](docs/chapter-2-cli-e2e.md)
 
 - [第三章：从函数开始写测试](docs/learning-path.md#第三章从函数开始写测试)
 - [第四章：从类与对象开始写测试](docs/learning-path.md#第四章从类与对象开始写测试)

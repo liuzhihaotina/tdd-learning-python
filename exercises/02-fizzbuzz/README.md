@@ -22,6 +22,7 @@
 ## 实战示例
 
 - 阅读 `docs/chapter-2-example.md`
+- 阅读 `docs/chapter-2-cli-e2e.md`
 
 ## 讨论点
 

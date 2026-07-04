@@ -60,6 +60,8 @@ assert fizzbuzz(15) == "FizzBuzz"
 
 - 实现：`src/tdd_learning_python/chapter2.py`
 - 测试：`tests/test_chapter2.py`
+- CLI：`src/tdd_learning_python/chapter2_cli.py`
+- E2E 测试：`tests/test_chapter2_cli_e2e.py`
 
 ---
 
@@ -69,6 +71,8 @@ assert fizzbuzz(15) == "FizzBuzz"
 - `3 -> Fizz`
 - `5 -> Buzz`
 - `15 -> FizzBuzz`
+
+如果你想看更接近真实使用场景的版本，可以继续阅读 `docs/chapter-2-cli-e2e.md`，那里会展示如何把 FizzBuzz 包装成一个最小命令行程序，并用 E2E 测试模拟用户输入。
 
 这个例子最重要的不是背规则，而是体会：
 
