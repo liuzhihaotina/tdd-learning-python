@@ -1,0 +1,106 @@
+# agent-context.yaml
+#
+# 作用：给自动化 Agent 提供“可续作”的结构化状态。
+# 用法建议：
+# 1. 每次进入仓库先读取本文件，再开始分析/修改。
+# 2. 每次完成一个可验证步骤后，更新本文件。
+# 3. 任何新模型调用前，把本文件内容放入上下文，帮助模型快速恢复：
+#    - 我在哪个项目
+#    - 目前做到哪一步
+#    - 已经改了什么
+#    - 还剩什么没做
+#    - 卡在哪里
+#
+# 维护原则：
+# - 只记录和当前工作有关的最小必要信息
+# - 用结构化字段，不要写成长篇自然语言
+# - 保持“当前状态”始终可读、可更新、可恢复
+
+schema_version: 1
+project:
+  name: tdd-learning-python
+  purpose: 面向 Python 初学者的测试驱动开发（TDD）学习仓库，按章节组织教程、练习与示例测试。
+  repository_root: .
+  default_working_dir: .
+  primary_language: python
+  test_runner: uv run pytest
+  package_name: tdd_learning_python
+  learning_structure:
+    - chapter: 1
+      title: 为什么需要测试
+    - chapter: 2
+      title: TDD 基本流程
+    - chapter: 3
+      title: 从函数开始写测试
+    - chapter: 4
+      title: 从类与对象开始写测试
+    - chapter: 5
+      title: Mock、边界条件与重构
+    - chapter: 6
+      title: 测试架构、fixture 与测试数据工厂
+
+agent_state:
+  status: idle # idle | investigating | modifying | verifying | blocked | done
+  current_goal: ""
+  current_chapter: null
+  current_task: ""
+  last_updated_at: ""
+  last_model_summary: ""
+  working_notes:
+    - "每次调用模型前，先读取本文件。"
+    - "每次完成改动后，更新 current_goal / tasks / verification / blockers。"
+    - "如果状态变更，优先更新本文件，再继续下一步。"
+
+context:
+  recent_observations:
+    - "仓库按章节组织，docs/learning-path.md 定义了 1~6 章学习路线。"
+    - "tests/ 下已存在章节测试与 CLI E2E 测试。"
+    - "src/tdd_learning_python/ 下是章节示例实现。"
+  relevant_paths:
+    docs:
+      - docs/learning-path.md
+      - docs/chapter-1-example.md
+      - docs/chapter-2-example.md
+      - docs/chapter-3-example.md
+      - docs/chapter-4-example.md
+      - docs/chapter-5-example.md
+      - docs/chapter-6-example.md
+    exercises:
+      - exercises/01-hello-tdd/README.md
+      - exercises/02-fizzbuzz/README.md
+      - exercises/03-password-validator/README.md
+      - exercises/04-bank-account/README.md
+      - exercises/05-shopping-cart/README.md
+      - exercises/06-test-architecture/README.md
+    src:
+      - src/tdd_learning_python/
+    tests:
+      - tests/
+
+state_fields:
+  todo:
+    - content: ""
+      status: pending # pending | in_progress | blocked | done
+      owner: agent
+      note: ""
+  decisions:
+    - id: ""
+      decision: ""
+      reason: ""
+      date: ""
+  verification:
+    latest_command: ""
+    latest_result: ""
+    coverage_notes: ""
+  blockers:
+    - issue: ""
+      impact: ""
+      next_action: ""
+  next_step: ""
+
+update_rules:
+  - "状态字段要随任务推进持续更新，而不是只在结束时填写。"
+  - "todo 列表应尽量具体、可勾选、可验证。"
+  - "verification 只记录真实执行过的命令与结果，不要猜测。"
+  - "blockers 只记录会影响继续推进的真实阻塞。"
+  - "如果任务完成，将 agent_state.status 置为 done，并清空或归档不再需要的中间备注。"
