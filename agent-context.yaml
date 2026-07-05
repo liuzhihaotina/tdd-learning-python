@@ -40,12 +40,12 @@ project:
       title: 测试架构、fixture 与测试数据工厂
 
 agent_state:
-  status: modifying # idle | investigating | modifying | verifying | blocked | done
-  current_goal: "统一前1~6章文档风格"
+  status: verifying # idle | investigating | modifying | verifying | blocked | done
+  current_goal: "统一第2、3、5章文档措辞"
   current_chapter: null
-  current_task: "对齐章节示例、CLI/E2E 文档和导读风格"
+  current_task: "统一 CLI/E2E 与示例文档中的细微措辞"
   last_updated_at: "2026-07-05"
-  last_model_summary: "已完成第1、4、6章示例与导读文档的风格统一，并验证相关测试通过。"
+  last_model_summary: "已统一第2、3、5章中的术语与结尾表述，并完成相关 E2E 测试验证。"
   working_notes:
     - "每次调用模型前，先读取本文件。"
     - "每次完成改动后，更新 current_goal / tasks / verification / blockers。"
@@ -53,62 +53,50 @@ agent_state:
 
 context:
   recent_observations:
-    - "第1、4、6章的示例文档已统一为 需求 / 为什么 / 推荐顺序 / 代码位置 / 你应该观察什么 的结构。"
-    - "第1章 CLI 文档已补充非数字输入说明，并保持与第2、3、5、6章的 E2E 风格接近。"
-    - "第6章导读标题已改为学习导读，以区别于实战示例。"
+    - "第5章已统一使用“优惠码”作为主术语。"
+    - "第2、3、5章 CLI/E2E 结尾的“用户怎么使用这个程序”措辞已对齐。"
+    - "第5章示例与 CLI 文档的 cross-link 表述已更贴近第2、3章的结构。"
   relevant_paths:
     docs:
-      - docs/chapter-1-example.md
-      - docs/chapter-1-cli-e2e.md
-      - docs/chapter-2-example.md
       - docs/chapter-2-cli-e2e.md
-      - docs/chapter-3-example.md
+      - docs/chapter-2-example.md
       - docs/chapter-3-cli-e2e.md
-      - docs/chapter-4-example.md
-      - docs/chapter-4-cli-e2e.md
-      - docs/chapter-5-example.md
+      - docs/chapter-3-example.md
       - docs/chapter-5-cli-e2e.md
-      - docs/chapter-6-example.md
-      - docs/chapter-6-cli-e2e.md
-      - docs/chapter-6-outline.md
-    exercises:
-      - exercises/06-test-architecture/README.md
-    src:
-      - src/tdd_learning_python/chapter1.py
-      - src/tdd_learning_python/chapter4.py
-      - src/tdd_learning_python/chapter6.py
+      - docs/chapter-5-example.md
     tests:
-      - tests/test_chapter1.py
-      - tests/test_cli_e2e.py
-      - tests/test_chapter4.py
-      - tests/test_chapter4_cli_e2e.py
-      - tests/test_chapter6.py
-      - tests/test_chapter6_cli_e2e.py
+      - tests/test_chapter2_cli_e2e.py
+      - tests/test_chapter3_cli_e2e.py
+      - tests/test_chapter5_cli_e2e.py
 
 state_fields:
   todo:
-    - content: "统一前1~6章文档风格"
-      status: in_progress # pending | in_progress | blocked | done
-      owner: agent
-      note: "正在对齐章节结构、措辞和跨章节跳转"
-    - content: "验证统一后的章节测试"
+    - content: "梳理第2、3、5章文档措辞差异"
       status: done # pending | in_progress | blocked | done
       owner: agent
-      note: "chapter1 / chapter4 / chapter6 相关测试已通过"
+      note: "已确认术语和收尾表述差异"
+    - content: "统一第2、3、5章的细微措辞"
+      status: done # pending | in_progress | blocked | done
+      owner: agent
+      note: "已统一优惠码术语和 E2E 结尾句"
+    - content: "验证相关文档与测试不受影响"
+      status: done # pending | in_progress | blocked | done
+      owner: agent
+      note: "chapter2/3/5 E2E 测试已通过"
   decisions:
-    - id: "style-unification-scope"
-      decision: "优先统一章节示例与 CLI/E2E 的文档结构，不改动业务实现。"
-      reason: "风格差异主要集中在文档标题、段落顺序和收尾跳转。"
+    - id: "style-unification-scope-2-3-5"
+      decision: "仅做术语与结尾措辞统一，不扩展到业务实现。"
+      reason: "差异集中在文档层，最小改动即可提升一致性。"
       date: "2026-07-05"
   verification:
-    latest_command: "uv run pytest tests/test_chapter1.py tests/test_chapter4.py tests/test_chapter6.py tests/test_cli_e2e.py tests/test_chapter4_cli_e2e.py tests/test_chapter6_cli_e2e.py -q"
-    latest_result: "通过，32 个测试全部通过。"
-    coverage_notes: "覆盖了第1、4、6章核心测试与 E2E，确认文档改动未影响实现。"
+    latest_command: "uv run pytest tests/test_chapter2_cli_e2e.py tests/test_chapter3_cli_e2e.py tests/test_chapter5_cli_e2e.py -q"
+    latest_result: "通过，7 个测试全部通过。"
+    coverage_notes: "覆盖第2、3、5章 CLI/E2E 的文档关联场景，确认无回归。"
   blockers:
     - issue: ""
       impact: ""
       next_action: ""
-  next_step: "如需进一步统一第2、3、5章的细微措辞，可继续做小范围文档润色。"
+  next_step: "如需提交，可直接 git add/commit；否则任务已完成。"
 
 update_rules:
   - "状态字段要随任务推进持续更新，而不是只在结束时填写。"
