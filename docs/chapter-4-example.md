@@ -51,7 +51,7 @@ with pytest.raises(ValueError, match="余额不足"):
 
 ---
 
-## 代码位置
+## 本章代码位置
 
 - 实现：`src/tdd_learning_python/chapter4.py`
 - 测试：`tests/test_chapter4.py`
@@ -63,6 +63,8 @@ with pytest.raises(ValueError, match="余额不足"):
 - 对象的初始状态
 - 每次方法调用后状态如何变化
 - 非法输入如何被拒绝
+
+如果你想看更接近真实使用场景的版本，可以继续阅读 `docs/chapter-4-cli-e2e.md`，那里会展示如何把银行账户包装成一个最小命令行程序，并用 E2E 测试模拟用户操作。
 
 这个例子要让你体会：
 
