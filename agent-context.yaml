@@ -40,12 +40,12 @@ project:
       title: 测试架构、fixture 与测试数据工厂
 
 agent_state:
-  status: idle # idle | investigating | modifying | verifying | blocked | done
-  current_goal: ""
-  current_chapter: null
-  current_task: ""
-  last_updated_at: ""
-  last_model_summary: ""
+  status: done # idle | investigating | modifying | verifying | blocked | done
+  current_goal: "补充第6章内容并同步维护 agent-context.yaml"
+  current_chapter: 6
+  current_task: "第6章文档入口、学习路径与练习说明已完善并完成验证"
+  last_updated_at: "2026-07-05"
+  last_model_summary: "第六章文档、学习路径、练习说明和状态记录均已对齐，并通过 chapter6 相关测试验证。"
   working_notes:
     - "每次调用模型前，先读取本文件。"
     - "每次完成改动后，更新 current_goal / tasks / verification / blockers。"
@@ -53,50 +53,52 @@ agent_state:
 
 context:
   recent_observations:
-    - "仓库按章节组织，docs/learning-path.md 定义了 1~6 章学习路线。"
-    - "tests/ 下已存在章节测试与 CLI E2E 测试。"
-    - "src/tdd_learning_python/ 下是章节示例实现。"
+    - "第六章已补充章节结构、工程化检查清单、推荐测试组织方式与 CLI/E2E 说明。"
+    - "README、learning-path 和练习说明已从占位状态改为完成态描述。"
+    - "tests/test_chapter6.py 已展示 fixture、工厂、参数化与命名场景的组合方式。"
   relevant_paths:
     docs:
       - docs/learning-path.md
-      - docs/chapter-1-example.md
-      - docs/chapter-2-example.md
-      - docs/chapter-3-example.md
-      - docs/chapter-4-example.md
-      - docs/chapter-5-example.md
+      - docs/chapter-6-outline.md
       - docs/chapter-6-example.md
+      - docs/chapter-6-cli-e2e.md
     exercises:
-      - exercises/01-hello-tdd/README.md
-      - exercises/02-fizzbuzz/README.md
-      - exercises/03-password-validator/README.md
-      - exercises/04-bank-account/README.md
-      - exercises/05-shopping-cart/README.md
       - exercises/06-test-architecture/README.md
     src:
-      - src/tdd_learning_python/
+      - src/tdd_learning_python/chapter6.py
+      - src/tdd_learning_python/chapter6_cli.py
     tests:
-      - tests/
+      - tests/test_chapter6.py
+      - tests/test_chapter6_cli_e2e.py
 
 state_fields:
   todo:
-    - content: ""
-      status: pending # pending | in_progress | blocked | done
+    - content: "补充第6章文档内容"
+      status: done # pending | in_progress | blocked | done
       owner: agent
-      note: ""
+      note: "完善章节结构、工程化检查清单和 CLI/E2E 说明"
+    - content: "同步维护 agent-context.yaml"
+      status: done # pending | in_progress | blocked | done
+      owner: agent
+      note: "记录当前目标、状态与相关路径"
+    - content: "验证第6章相关测试与文档一致性"
+      status: done # pending | in_progress | blocked | done
+      owner: agent
+      note: "chapter6 单元测试和 CLI E2E 已通过"
   decisions:
-    - id: ""
-      decision: ""
-      reason: ""
-      date: ""
+    - id: "chapter6-docs-scope"
+      decision: "优先补齐文档与仓库入口说明，不改动业务实现。"
+      reason: "现有实现已完整，主要不一致在文档与状态记录。"
+      date: "2026-07-05"
   verification:
-    latest_command: ""
-    latest_result: ""
-    coverage_notes: ""
+    latest_command: "uv run pytest tests/test_chapter6.py tests/test_chapter6_cli_e2e.py -q"
+    latest_result: "通过，16 个测试全部通过。"
+    coverage_notes: "验证了 chapter6 核心逻辑与 CLI E2E，未修改业务实现。"
   blockers:
     - issue: ""
       impact: ""
       next_action: ""
-  next_step: ""
+  next_step: "任务已完成，无进一步操作。"
 
 update_rules:
   - "状态字段要随任务推进持续更新，而不是只在结束时填写。"

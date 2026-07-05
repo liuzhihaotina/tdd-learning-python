@@ -163,7 +163,7 @@ uv run python -m tdd_learning_python.chapter1_cli
 - [第六章：测试架构、fixture 与测试数据工厂](docs/learning-path.md#第六章测试架构fixture-与测试数据工厂)
   - [第六章实战示例：测试架构、fixture 与测试数据工厂](docs/chapter-6-example.md)
   - [第六章 CLI + E2E 示例](docs/chapter-6-cli-e2e.md)
-    - 当前为章节占位，后续补齐最小 CLI 场景
+    - 已包含订单定价引擎、fixture / 工厂 / 参数化示例，以及 CLI 端到端验证
 
 
 

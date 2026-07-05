@@ -11,6 +11,7 @@
 - 录入商品
 - 选择用户等级
 - 查看订单摘要
+- 验证错误输入时的退出行为
 
 ---
 
@@ -52,6 +53,12 @@ vip
 
 ```text
 不支持的用户等级：vip
+```
+
+如果商品价格不是整数，程序会输出：
+
+```text
+请输入有效的整数价格
 ```
 
 ---
@@ -96,6 +103,12 @@ uv run python -m tdd_learning_python.chapter6_cli
 ./.venv/bin/pytest tests/test_chapter6_cli_e2e.py -q
 ```
 
+你也可以把第六章的单元测试一起跑掉，确认核心逻辑和入口行为保持一致：
+
+```bash
+uv run pytest tests/test_chapter6.py tests/test_chapter6_cli_e2e.py -q
+```
+
 ---
 
 ## 你应该观察什么
@@ -103,6 +116,7 @@ uv run python -m tdd_learning_python.chapter6_cli
 - CLI 是否能把多个商品录入成订单
 - 不同等级是否会影响最终总价
 - 非法等级是否会被拒绝
-- 这个测试覆盖的是“用户如何使用定价引擎”，不是内部实现细节
+- E2E 测试是否只关心“从输入到输出”的整体行为
+- 错误路径是否也有明确、可验证的退出码
 
 这就是 E2E 的价值：它能帮你确认**从入口到结果**这条链路是通的。

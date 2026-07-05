@@ -125,12 +125,14 @@
 - `pytest.mark.parametrize` 的进阶用法
 - 测试数据工厂（test data factory）的基本思路
 - 如何维护回归测试集
+- 如何避免测试抽象过度
 
 ### 练习
 
 - 阅读 `docs/chapter-6-example.md`
 - 阅读 `docs/chapter-6-cli-e2e.md`
 - 阅读 `exercises/06-test-architecture/README.md`
+- 对照 `tests/test_chapter6.py` 理解 fixture / 工厂 / 参数化的分工
 - 把重复测试数据抽成 fixture 或工厂
 - 把一组相关回归用例整理成参数化测试
 - 学会让测试可读、可维护、可扩展
